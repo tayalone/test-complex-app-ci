@@ -4,8 +4,14 @@
   "description": "worker for example4",
   "main": "index.js",
   "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "nodemon": "^2.0.3",
+    "redis": "^3.0.2"
+  }
 }
