@@ -1,0 +1,11 @@
+{
+  "name": "exmaple4-servere",
+  "version": "1.0.0",
+  "description": "express app for example4",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
