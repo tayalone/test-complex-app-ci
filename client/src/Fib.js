@@ -20,9 +20,17 @@ export default class Fib extends Component {
   }
 
   handleSubmit = async (e) => {
-    e.preventDefalt()
-    await axios.post('/api/values', { index: this.state.index })
-    this.setState({ index: '' })
+    try {
+      e.preventDefault()
+      await axios.post('/api/values', { index: this.state.index })
+      this.setState({ index: '' })
+      setTimeout(() => {
+        this.fetchValues()
+        this.fetchIndexes()
+      }, 1500)
+    } catch (err) {
+      console.error(`error Fib.handleSubmit`, err)
+    }
   }
 
   rendeerSeenIndexes = () => {
@@ -37,6 +45,7 @@ export default class Fib extends Component {
         </div>
       )
     }
+    return entries
   }
   render() {
     return (
