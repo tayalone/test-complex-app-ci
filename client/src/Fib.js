@@ -12,13 +12,10 @@ export default class Fib extends Component {
   }
   async fetchValues() {
     const res = await axios.get('/api/values/current')
-    console.log(`fetchValues`, res.data)
-
     this.setState({ values: res.data })
   }
   async fetchIndexes() {
     const res = await axios.get('/api/values/all')
-    console.log(`fetchIndexes`, res.data)
     this.setState({ seenIndexes: res.data })
   }
 
@@ -27,6 +24,10 @@ export default class Fib extends Component {
       e.preventDefault()
       await axios.post('/api/values', { index: this.state.index })
       this.setState({ index: '' })
+      setTimeout(() => {
+        this.fetchValues()
+        this.fetchIndexes()
+      }, 1500)
     } catch (err) {
       console.error(`error Fib.handleSubmit`, err)
     }
