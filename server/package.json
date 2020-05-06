@@ -1,5 +1,5 @@
 {
-  "name": "exmaple4-servere",
+  "name": "exmaple4-server",
   "version": "1.0.0",
   "description": "express app for example4",
   "main": "index.js",
