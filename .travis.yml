@@ -3,13 +3,20 @@ sevices:
   - docker
 
 before_install:
-  - docker build -t taylone/docker-react -f ./client/Dockerfile.dev ./client
+  - docker build -t taylone/test-multi-client -f ./client/Dockerfile.dev ./client
 
 script:
-  - docker run -e CI=true taylone/docker-react npm run test -- --coverage
+  - docker run -e CI=true taylone/test-multi-client npm run test -- --coverage
 
 after_success:
   - docker build -t taylone/multi-client ./client
   - docker build -t taylone/multi-nginx ./nginx
   - docker build -t taylone/multi-server ./server
   - docker build -t taylone/multi-worker ./worker
+
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+
+  - docker push taylone/multi-client
+  - docker push taylone/multi-nginx
+  - docker push taylone/multi-server
+  - docker push taylone/multi-worker
